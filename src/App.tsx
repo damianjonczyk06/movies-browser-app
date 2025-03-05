@@ -1,14 +1,28 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { MainPage } from './views/MainPage/MainPage';
+
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import queryClient from './queryClient';
+
+import { Toaster } from '@/components/ui/toaster';
+
+import { MainView } from './views/Main/Main.view';
+import { MovieDetailsView } from './views/MovieDetails/MovieDetails.view';
+
 import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<MainView />} />
+          <Route path='/movie/:id' element={<MovieDetailsView />} />
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
