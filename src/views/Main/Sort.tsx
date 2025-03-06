@@ -1,24 +1,30 @@
-import { Box, createListCollection } from '@chakra-ui/react';
-import { SelectContent, SelectItem, SelectLabel, SelectRoot, SelectTrigger, SelectValueText } from '@/components/ui/select';
+import { Box, createListCollection, Heading } from '@chakra-ui/react';
+import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from '@/components/ui/select';
+import { Dispatch, SetStateAction } from 'react';
 
-export const Sort = ({ sortValue, setSortValue }) => {
+interface SortProps {
+  sortValue: string;
+  setSortValue: Dispatch<SetStateAction<string>>;
+}
+
+export const Sort = ({ sortValue, setSortValue }: SortProps) => {
   const sortOptions = createListCollection({
     items: [
-      { label: 'title.asc', value: 'title.asc' },
-      { label: 'title.desc', value: 'title.desc' },
+      { label: 'Title ascending', value: 'title.asc' },
+      { label: 'Title descending', value: 'title.desc' },
 
-      { label: 'vote_average.asc', value: 'vote_average.asc' },
-      { label: 'vote_average.desc', value: 'vote_average.desc' },
+      { label: 'Vote average ascending', value: 'vote_average.asc' },
+      { label: 'Vote average descending', value: 'vote_average.desc' },
 
-      { label: 'popularity.asc', value: 'popularity.asc' },
-      { label: 'popularity.desc', value: 'popularity.desc' },
+      { label: 'Popularity ascending', value: 'popularity.asc' },
+      { label: 'Popularity descending', value: 'popularity.desc' },
     ],
   });
 
   return (
     <Box>
-      <SelectRoot collection={sortOptions} value={sortValue} onValueChange={e => setSortValue(e.value)} width={'300px'}>
-        <SelectLabel>Sort</SelectLabel>
+      <Heading marginBottom={'0.5rem'}> Sort </Heading>
+      <SelectRoot collection={sortOptions} value={[sortValue]} onValueChange={e => setSortValue(e.value[0])} width={'300px'}>
         <SelectTrigger>
           <SelectValueText placeholder='Sort by' />
         </SelectTrigger>

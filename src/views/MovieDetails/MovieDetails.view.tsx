@@ -13,7 +13,6 @@ export const MovieDetailsView = () => {
   }
 
   if (movie) {
-    console.log(movie);
     return (
       <Flex gap={'15px'}>
         <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={`${movie.title} poster`} />
@@ -23,7 +22,9 @@ export const MovieDetailsView = () => {
           </Heading>
           <Flex gap={'5px'}>
             {movie.genres.map(g => (
-              <Link to={`/genres/${g.id}`}>{g.name}</Link>
+              <Link key={g.id} to={`/genres/${g.id}`}>
+                {g.name}
+              </Link>
             ))}
           </Flex>
           <Text textStyle='md'>{movie.tagline}</Text>

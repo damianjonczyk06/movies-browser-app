@@ -3,19 +3,24 @@ import { Flex } from '@chakra-ui/react';
 import { MoviesList } from './MoviesList';
 import { Filters } from './Filters';
 import { Sort } from './Sort';
+import { SearchParams } from '@/api/movies';
 
 export const MainView = () => {
-  const [sortValue, setSortValue] = useState('popularity.desc');
-  const [filterValue, setFilterValues] = useState({ with_genres: [], 'vote_average.gte': 1 });
-  const params = new URLSearchParams({ sort_by: sortValue, ...filterValue });
+  const [sortValue, setSortValue] = useState<string>('popularity.desc');
+  const [filterValue, setFilterValues] = useState<SearchParams>({ with_genres: [], 'vote_average.gte': '5' });
+  const searchParams = new URLSearchParams({
+    sort_by: sortValue,
+    'vote_average.gte': filterValue['vote_average.gte'] || '',
+    with_genres: filterValue.with_genres.join(','),
+  });
 
   return (
-    <Flex gap={'10px'}>
-      <Flex flexDirection={'column'} gap={'30px'}>
+    <Flex gap={'2rem'}>
+      <Flex flexDirection={'column'} gap={'2rem'}>
         <Sort sortValue={sortValue} setSortValue={setSortValue} />
         <Filters filterValue={filterValue} setFilterValue={setFilterValues} />
       </Flex>
-      <MoviesList searchParams={params.toString()} />
+      <MoviesList searchParams={searchParams.toString()} />
     </Flex>
   );
 };
