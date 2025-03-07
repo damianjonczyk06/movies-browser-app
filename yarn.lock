@@ -1546,6 +1546,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/eslint-plugin-query@npm:4":
+  version: 4.38.0
+  resolution: "@tanstack/eslint-plugin-query@npm:4.38.0"
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+  checksum: 10/6346589ebefa4765fd0b88bebb5aa7c7cd4950931765c90592fa2b7df2af4f9a9a1da771e678cba9112596c0b9f1e64533637dccd5dc527a792579a96b97db5b
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-core@npm:5.67.1":
   version: 5.67.1
   resolution: "@tanstack/query-core@npm:5.67.1"
@@ -5116,6 +5125,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@eslint/js": "npm:^9.21.0"
     "@tailwindcss/vite": "npm:^4.0.9"
+    "@tanstack/eslint-plugin-query": "npm:4"
     "@tanstack/react-query": "npm:^5.67.1"
     "@tanstack/react-query-devtools": "npm:^5.67.1"
     "@types/react": "npm:^19.0.10"
@@ -5129,6 +5139,7 @@ __metadata:
     globals: "npm:^15.15.0"
     next-themes: "npm:^0.4.4"
     node-vibrant: "npm:^4.0.3"
+    prettier: "npm:3.5.3"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-icons: "npm:^5.5.0"
@@ -5563,6 +5574,15 @@ __metadata:
   bin:
     prettier: bin/prettier.cjs
   checksum: 10/5beac1f30b5b40162532b8e2f7c3a4eb650910a2695e9c8512a62ffdc09dae93190c29db9107fa7f26d1b6c71aad3628ecb9b5de1ecb0911191099be109434d7
+  languageName: node
+  linkType: hard
+
+"prettier@npm:3.5.3":
+  version: 3.5.3
+  resolution: "prettier@npm:3.5.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10/7050c08f674d9e49fbd9a4c008291d0715471f64e94cc5e4b01729affce221dfc6875c8de7e66b728c64abc9352eefb7eaae071b5f79d30081be207b53774b78
   languageName: node
   linkType: hard
 

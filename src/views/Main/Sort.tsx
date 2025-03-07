@@ -24,12 +24,12 @@ export const Sort = ({ sortValue, setSortValue }: SortProps) => {
   return (
     <Box>
       <Heading marginBottom={'0.5rem'}> Sort </Heading>
-      <SelectRoot collection={sortOptions} value={[sortValue]} onValueChange={e => setSortValue(e.value[0])}>
+      <SelectRoot collection={sortOptions} value={[sortValue]} onValueChange={(e) => setSortValue(e.value[0])}>
         <SelectTrigger>
           <SelectValueText placeholder='Sort by' />
         </SelectTrigger>
         <SelectContent>
-          {sortOptions.items.map(option => (
+          {sortOptions.items.map((option) => (
             <SelectItem item={option} key={option.value}>
               {option.label}
             </SelectItem>

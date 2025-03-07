@@ -1,4 +1,4 @@
-import { Flex, Image, Input, useBreakpointValue, Button } from '@chakra-ui/react';
+import { Flex, Input, useBreakpointValue, Button } from '@chakra-ui/react';
 // import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -74,7 +74,7 @@ export const Menu = () => {
 
         {showMobileMenu && isMobile && (
           <Flex flexDirection={'column'} alignItems={'center'} align='center' flex='1' p={'1rem'} bg={'gray.300'}>
-            <Input w={'300px'} bgColor={'white'} placeholder='Search...' onChange={e => setSearchQuery(e.target.value)} />
+            <Input w={'300px'} bgColor={'white'} placeholder='Search...' onChange={(e) => setSearchQuery(e.target.value)} />
 
             <Link to={'/'}> Movies </Link>
             <Link to={'/'}> People </Link>
@@ -121,7 +121,7 @@ export const Menu = () => {
         </svg>
       </Link>
 
-      <Input w={'300px'} bgColor={'white'} placeholder='Search...' onChange={e => setSearchQuery(e.target.value)} />
+      <Input w={'300px'} bgColor={'white'} placeholder='Search...' onChange={(e) => setSearchQuery(e.target.value)} />
     </Flex>
   );
 };

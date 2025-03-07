@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import queryClient from './queryClient';
@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Flex flexDirection={'column'}>
           <Menu />
-          
+
           <Routes>
             <Route index element={<MainView />} />
             <Route path='/movie/:id' element={<MovieDetailsView />} />

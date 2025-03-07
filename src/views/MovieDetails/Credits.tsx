@@ -22,7 +22,7 @@ export const Credits = () => {
 
         <Flex p={'1rem 1px'} width={'100%'} gap={'1rem'} overflowX={'auto'}>
           {data?.cast.length
-            ? data?.cast.map(person => (
+            ? data?.cast.map((person) => (
                 <Link to={`/person/${person.id}`} key={person.id}>
                   <Card.Root
                     flexDirection={'column'}

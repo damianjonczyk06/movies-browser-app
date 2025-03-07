@@ -19,10 +19,10 @@ export const MovieDetailsView = () => {
       Vibrant.from(
         movie.backdrop_path
           ? `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.backdrop_path}`
-          : `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.poster_path}`,
+          : `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.poster_path}`
       )
         .getPalette()
-        .then(palette => setPalette(palette.Muted?.hex ?? ''));
+        .then((palette) => setPalette(palette.Muted?.hex ?? ''));
     }
   }, [movie]);
 
@@ -91,7 +91,7 @@ export const MovieDetailsView = () => {
             </Heading>
 
             <Flex gap={'10px'} mb={'1rem'}>
-              {movie.genres.map(g => (
+              {movie.genres.map((g) => (
                 <Link key={g.id} to={`/genres/${g.id}`}>
                   {g.name}
                 </Link>

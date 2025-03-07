@@ -12,7 +12,7 @@ import { SkeletonGrid } from '@/components/SkeletonGrid';
 export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   const { ref, inView } = useInView();
   const { data, error, isPending, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    api.MoviesLibrary.FetchMoviesListQuery(searchParams),
+    api.MoviesLibrary.FetchMoviesListQuery(searchParams)
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
           w={'100%'}
           p={'3rem'}
         >
-          {data.pages.map(page => page.results.map(movie => <SingleMovie key={`${movie.id}`} movie={movie} />))}
+          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={`${movie.id}`} movie={movie} />))}
         </Grid>
 
         {hasNextPage && (

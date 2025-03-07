@@ -15,14 +15,14 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
   const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchGenresListQuery());
 
   const handleSelectGenre = (genre: number) => {
-    setFilterValue(prev => ({
+    setFilterValue((prev) => ({
       ...prev,
-      with_genres: prev.with_genres.includes(genre) ? prev.with_genres.filter(v => v !== genre) : [...prev.with_genres, genre],
+      with_genres: prev.with_genres.includes(genre) ? prev.with_genres.filter((v) => v !== genre) : [...prev.with_genres, genre],
     }));
   };
 
   const handleChangeScore = (value: number) => {
-    setFilterValue(prev => ({
+    setFilterValue((prev) => ({
       ...prev,
       'vote_average.gte': `${value}`,
     }));
@@ -41,7 +41,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
           </Box>
           <AccordionItemContent>
             <Flex flexWrap={'wrap'} gap={'8px'}>
-              {data.genres.map(g => (
+              {data.genres.map((g) => (
                 <Button
                   key={`${g.id}-${g.name}`}
                   value={g.id}
@@ -62,7 +62,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
           </Box>
           <AccordionItemContent>
             <Slider
-              onValueChangeEnd={e => handleChangeScore(e.value[0])}
+              onValueChangeEnd={(e) => handleChangeScore(e.value[0])}
               defaultValue={[5]}
               max={10}
               min={1}

@@ -13,7 +13,7 @@ export const SearchView = () => {
   const { ref, inView } = useInView();
   const [searchParams] = useSearchParams();
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, error } = useInfiniteQuery(
-    api.MoviesLibrary.SearchMoviesListQuery(searchParams.get('query') ?? ''),
+    api.MoviesLibrary.SearchMoviesListQuery(searchParams.get('query') ?? '')
   );
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const SearchView = () => {
     }
   }, [fetchNextPage, inView]);
 
-  if (isPending ) return <SkeletonGrid />;
+  if (isPending) return <SkeletonGrid />;
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
     return (
@@ -33,7 +33,7 @@ export const SearchView = () => {
           gap='6'
           w={'100%'}
         >
-          {data.pages.map(page => page.results.map(movie => <SingleMovie key={`${movie.id}`} movie={movie} />))}
+          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={`${movie.id}`} movie={movie} />))}
         </Grid>
 
         {hasNextPage && (

@@ -123,7 +123,7 @@ export const MoviesLibrary = {
     infiniteQueryOptions({
       queryKey: ['moviesLibrary', searchParams],
       queryFn: ({ pageParam = 1 }) => fetchMoviesListFn(searchParams, pageParam),
-      getNextPageParam: lastPage => (lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined),
+      getNextPageParam: (lastPage) => (lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined),
       initialPageParam: 1,
     }),
 
@@ -144,7 +144,7 @@ export const MoviesLibrary = {
     infiniteQueryOptions({
       queryKey: ['moviesLibrary', 'search', query],
       queryFn: ({ pageParam = 1 }) => searchMoviesListFn(query, pageParam),
-      getNextPageParam: movieList => movieList.page + 1,
+      getNextPageParam: (movieList) => movieList.page + 1,
       initialPageParam: 1,
     }),
 };
