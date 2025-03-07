@@ -94,7 +94,7 @@ export async function fetchMoviesListFn(searchParams: string, pageParam: number)
   return (await axios.get(`${BASE_URL}/discover/movie?page=${pageParam}&${searchParams}`, options)).data;
 }
 
-export async function fetchMovieFn(id: string | undefined): Promise<Movie> {
+export async function fetchMovieFn(id: string): Promise<Movie> {
   return (await axios.get(`${BASE_URL}/movie/${id}`, options)).data;
 }
 
@@ -102,7 +102,7 @@ export async function fetchGenresListFn(): Promise<Genres> {
   return (await axios.get(`${BASE_URL}/genre/movie/list`, options)).data;
 }
 
-export async function fetchCreditsListFn(id: string | undefined): Promise<Credits> {
+export async function fetchCreditsListFn(id: string): Promise<Credits> {
   return (await axios.get(`${BASE_URL}/movie/${id}/credits`, options)).data;
 }
 
@@ -110,11 +110,11 @@ export async function searchMoviesListFn(query: string, pageParam: number): Prom
   return (await axios.get(`${BASE_URL}/search/movie?page=${pageParam}&query=${query}`, options)).data;
 }
 
-export async function fetchPersonFn(id: string | undefined): Promise<Person> {
+export async function fetchPersonFn(id: string): Promise<Person> {
   return (await axios.get(`${BASE_URL}/person/${id}`, options)).data;
 }
 
-export async function fetchPersonCreditsFn(id: string | undefined): Promise<PersonCredits> {
+export async function fetchPersonCreditsFn(id: string): Promise<PersonCredits> {
   return (await axios.get(`${BASE_URL}/person/${id}/movie_credits`, options)).data;
 }
 
@@ -127,17 +127,17 @@ export const MoviesLibrary = {
       initialPageParam: 1,
     }),
 
-  FetchMovieQuery: (id: string | undefined) => queryOptions({ queryKey: ['moviesLibrary', id], queryFn: () => fetchMovieFn(id) }),
+  FetchMovieQuery: (id: string) => queryOptions({ queryKey: ['moviesLibrary', id], queryFn: () => fetchMovieFn(id) }),
 
   FetchGenresListQuery: () => queryOptions({ queryKey: ['moviesLibrary', 'genres'], queryFn: () => fetchGenresListFn() }),
 
-  FetchCreditsListQuery: (id: string | undefined) =>
+  FetchCreditsListQuery: (id: string) =>
     queryOptions({ queryKey: ['moviesLibrary', 'credits', id], queryFn: () => fetchCreditsListFn(id) }),
 
-  FetchPersonQuery: (id: string | undefined) =>
+  FetchPersonQuery: (id: string) =>
     queryOptions({ queryKey: ['moviesLibrary', 'person', id], queryFn: () => fetchPersonFn(id) }),
 
-  FetchPersonCreditsQuery: (id: string | undefined) =>
+  FetchPersonCreditsQuery: (id: string) =>
     queryOptions({ queryKey: ['moviesLibrary', 'person', 'credits', id], queryFn: () => fetchPersonCreditsFn(id) }),
 
   SearchMoviesListQuery: (query: string) =>

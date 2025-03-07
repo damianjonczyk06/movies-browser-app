@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
+import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
+import { SkeletonGrid } from '@/components/SkeletonGrid';
 import { SingleMovie } from './SingleMovie';
 
-import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
-
 import api from '@/api';
-import { SkeletonGrid } from '@/components/SkeletonGrid';
 
 export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   const { ref, inView } = useInView();
@@ -38,7 +37,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
           w={'100%'}
           p={'3rem'}
         >
-          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={`${movie.id}`} movie={movie} />))}
+          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={movie.id} movie={movie} />))}
         </Grid>
 
         {hasNextPage && (

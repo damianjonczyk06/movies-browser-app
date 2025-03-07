@@ -1,9 +1,11 @@
 import { useState } from 'react';
+
 import { Flex, useBreakpointValue } from '@chakra-ui/react';
 import { MoviesList } from './MoviesList';
 import { Filters } from './Filters';
 import { Sort } from './Sort';
-import { SearchParams } from '@/api/movies';
+
+import type { SearchParams } from '@/api/movies';
 
 export const MainView = () => {
   const [sortValue, setSortValue] = useState<string>('popularity.desc');

@@ -1,10 +1,12 @@
-import api from '@/api';
-import { SearchParams } from '@/api/movies';
+import { Dispatch, SetStateAction } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from '@/components/ui/accordion';
 import { Slider } from '@/components/ui/slider';
-import { Box, Button, Flex, Heading } from '@chakra-ui/react';
-import { useQuery } from '@tanstack/react-query';
-import { Dispatch, SetStateAction } from 'react';
+
+import type { SearchParams } from '@/api/movies';
+import api from '@/api';
 
 interface FiltersProps {
   filterValue: SearchParams;

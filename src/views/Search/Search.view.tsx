@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
-import { useSearchParams } from 'react-router';
-
 import { useInView } from 'react-intersection-observer';
+import { useSearchParams } from 'react-router';
+import { useInfiniteQuery } from '@tanstack/react-query';
+
+import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
+import { SkeletonGrid } from '@/components/SkeletonGrid';
+import { SingleMovie } from '../Main/SingleMovie';
+
 import api from '@/api';
 
-import { SingleMovie } from '../Main/SingleMovie';
-import { SkeletonGrid } from '@/components/SkeletonGrid';
-
-export const SearchView = () => {
+const SearchView = () => {
   const { ref, inView } = useInView();
   const [searchParams] = useSearchParams();
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, error } = useInfiniteQuery(
@@ -33,7 +33,7 @@ export const SearchView = () => {
           gap='6'
           w={'100%'}
         >
-          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={`${movie.id}`} movie={movie} />))}
+          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={movie.id} movie={movie} />))}
         </Grid>
 
         {hasNextPage && (
@@ -52,3 +52,5 @@ export const SearchView = () => {
     );
   }
 };
+
+export default SearchView;

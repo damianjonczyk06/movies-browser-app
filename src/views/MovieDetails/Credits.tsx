@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 
 import { Box, Card, Flex, Heading, Image, Text } from '@chakra-ui/react';
 
@@ -7,12 +7,11 @@ import api from '@/api';
 
 export const Credits = () => {
   const { id } = useParams();
+  if (!id) throw new Error('ID is empty');
+
   const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchCreditsListQuery(id));
 
-  if (isPending) {
-    <>Pending</>;
-  }
-
+  if (isPending) return <>Pending</>;
   if (error) return <p>Error: {error.message}</p>;
 
   if (data)

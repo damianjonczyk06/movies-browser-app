@@ -1,15 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { AbsoluteCenter, Box, Button, Flex, Heading, Image, ProgressCircle, Text } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
 import { Vibrant } from 'node-vibrant/browser';
 
-import api from '@/api';
-import { useEffect, useState } from 'react';
-import { Credits } from './Credits';
+import { AbsoluteCenter, Box, Button, Flex, Heading, Image, ProgressCircle, Text } from '@chakra-ui/react';
 import { MovieDetailsSkeleton } from './MovieDetailsSkeleton';
+import { Credits } from './Credits';
 
-export const MovieDetailsView = () => {
+import api from '@/api';
+
+const MovieDetailsView = () => {
   const { id } = useParams();
+  if (!id) throw new Error('ID is empty');
+
   const navigate = useNavigate();
   const [palette, setPalette] = useState('');
   const { data: movie, isPending, isError, error } = useQuery(api.MoviesLibrary.FetchMovieQuery(id));
@@ -136,3 +139,5 @@ export const MovieDetailsView = () => {
     );
   }
 };
+
+export default MovieDetailsView;

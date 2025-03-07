@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Box, createListCollection, Heading } from '@chakra-ui/react';
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from '@/components/ui/select';
-import { Dispatch, SetStateAction } from 'react';
 
 interface SortProps {
   sortValue: string;

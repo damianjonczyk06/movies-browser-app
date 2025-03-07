@@ -1,14 +1,16 @@
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { Flex, Heading, Image, Text } from '@chakra-ui/react';
 
+import { Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { Credits } from './Credits';
 import { PersonDetailsSkeleton } from './PersonDetailsSkeleton';
 
 import api from '@/api';
 
-export const PersonView = () => {
+const PersonView = () => {
   const { id } = useParams();
+  if (!id) throw new Error('ID is empty');
+
   const { data, isPending, isError, error } = useQuery(api.MoviesLibrary.FetchPersonQuery(id));
 
   if (isPending) return <PersonDetailsSkeleton />;
@@ -42,3 +44,5 @@ export const PersonView = () => {
       </Flex>
     );
 };
+
+export default PersonView;

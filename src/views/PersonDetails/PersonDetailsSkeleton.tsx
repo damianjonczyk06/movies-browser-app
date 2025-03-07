@@ -1,5 +1,5 @@
-import { SkeletonText } from '@/components/ui/skeleton';
 import { Box, Flex, Skeleton } from '@chakra-ui/react';
+import { SkeletonText } from '@/components/ui/skeleton';
 
 export const PersonDetailsSkeleton = () => {
   return (
