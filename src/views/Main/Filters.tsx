@@ -3,10 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 
 import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from '@/components/ui/accordion';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Slider } from '@/components/ui/slider';
 
-import type { SearchParams } from '@/api/movies';
 import api from '@/api';
+import type { SearchParams } from '@/api/movies';
 
 interface FiltersProps {
   filterValue: SearchParams;
@@ -30,13 +31,20 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
     }));
   };
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <Flex flexDirection={'column'} gap={'1rem'}>
+        <Skeleton h={'2rem'} w={'5rem'} />
+        <Skeleton h={'3rem'} w={'100%'} />
+        <Skeleton h={'3rem'} w={'100%'} />
+      </Flex>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <Box>
       <Heading marginBottom={'0.5rem'}> Filters </Heading>
-      <AccordionRoot spaceY='4' variant='plain' collapsible defaultValue={['b']}>
+      <AccordionRoot spaceY='4' variant='plain' collapsible>
         <AccordionItem value={'genres'}>
           <Box position='relative'>
             <AccordionItemTrigger indicatorPlacement='start'>Genres</AccordionItemTrigger>

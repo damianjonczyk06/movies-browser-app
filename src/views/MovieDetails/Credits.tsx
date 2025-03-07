@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 
-import { Box, Card, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Card, Flex, Heading, Image, Skeleton, Text } from '@chakra-ui/react';
+import { SkeletonText } from '@/components/ui/skeleton';
 
 import api from '@/api';
 
@@ -11,7 +12,19 @@ export const Credits = () => {
 
   const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchCreditsListQuery(id));
 
-  if (isPending) return <>Pending</>;
+  if (isPending)
+    return (
+      <Box p={'2.5rem'}>
+        <SkeletonText noOfLines={1} w={'100px'} />
+
+        <Flex gap={'1rem'} p={'1rem 1px'}>
+          <Skeleton h={'352px'} w={'200px'} />
+          <Skeleton h={'352px'} w={'200px'} />
+          <Skeleton h={'352px'} w={'200px'} />
+          <Skeleton h={'352px'} w={'200px'} />
+        </Flex>
+      </Box>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   if (data)

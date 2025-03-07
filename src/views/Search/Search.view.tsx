@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useSearchParams } from 'react-router';
+import { useSearchParams, useNavigate } from 'react-router';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
+import { Button, Flex, Grid, ProgressCircle } from '@chakra-ui/react';
 import { SkeletonGrid } from '@/components/SkeletonGrid';
 import { SingleMovie } from '../Main/SingleMovie';
+import { ArrowBack } from '@/components/ArrowBack';
 
 import api from '@/api';
 
 const SearchView = () => {
   const { ref, inView } = useInView();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, error } = useInfiniteQuery(
     api.MoviesLibrary.SearchMoviesListQuery(searchParams.get('query') ?? '')
   );
@@ -26,7 +28,21 @@ const SearchView = () => {
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
     return (
-      <Flex flexDirection={'column'} gap={'2rem'} w={'100%'} p={'3rem'}>
+      <Flex position={'relative'} flexDirection={'column'} gap={'2rem'} w={'100%'} p={'3rem'}>
+        <Button
+          fontSize={'md'}
+          fontWeight={'light'}
+          background={{ base: 'transparent', _hover: 'transparent' }}
+          color={{ base: 'white', _hover: 'white' }}
+          textDecoration={{ base: 'none', _hover: 'underline 2px solid white' }}
+          position={'absolute'}
+          top={'0.25rem'}
+          left={{ base: '3.5rem', _hover: '3rem' }}
+          transition={'left 200ms ease-in-out'}
+          onClick={() => navigate(-1)}
+        >
+          <ArrowBack color='black'/>
+        </Button>
         <Grid
           templateColumns={{ base: 'repeat(auto-fit, minmax(200px, 1fr))', md: 'repeat(auto-fit, minmax(200px, 250px))' }}
           justifyContent={'center'}
