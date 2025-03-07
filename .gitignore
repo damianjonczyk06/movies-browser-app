@@ -23,3 +23,18 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+# yarn without Zero-Installs
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Documentation here: https://yarnpkg.com/features/zero-installs
+# Uncomment for zero installs
+# !.yarn/cache
+# Comment for zero installs
+.pnp.*
