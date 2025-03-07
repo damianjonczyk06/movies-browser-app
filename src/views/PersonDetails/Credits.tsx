@@ -7,7 +7,7 @@ import api from '@/api';
 
 export const Credits = () => {
   const { id } = useParams();
-  const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchCreditsListQuery(id));
+  const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchPersonCreditsQuery(id));
 
   if (isPending) {
     <>Pending</>;
@@ -18,12 +18,12 @@ export const Credits = () => {
   if (data)
     return (
       <Box p={'2.5rem'}>
-        <Heading>Cast:</Heading>
+        <Heading>Movies:</Heading>
 
         <Flex p={'1rem 1px'} width={'100%'} gap={'1rem'} overflowX={'auto'}>
           {data?.cast.length
-            ? data?.cast.map(person => (
-                <Link to={`/person/${person.id}`} key={person.id}>
+            ? data?.cast.map(movie => (
+                <Link to={`/movie/${movie.id}`} key={movie.id}>
                   <Card.Root
                     flexDirection={'column'}
                     w={'100%'}
@@ -36,14 +36,8 @@ export const Credits = () => {
                     alignItems={'start'}
                   >
                     <Image
-                      src={
-                        person.profile_path
-                          ? `https://media.themoviedb.org/t/p/w138_and_h175_face/${person.profile_path}`
-                          : person.gender == 1
-                            ? '/images/person/female_avatar_placeholder.jpg'
-                            : '/images/person/male_avatar_placeholder.jpg'
-                      }
-                      alt={`${person.name}`}
+                      src={`https://media.themoviedb.org/t/p/w138_and_h175_face/${movie.poster_path}`}
+                      alt={`${movie.title} poster`}
                       minW={'100%'}
                       maxH={'240px'}
                       h={'100%'}
@@ -51,16 +45,16 @@ export const Credits = () => {
                     />
 
                     <Card.Body p={'1.5rem 0.5rem 0 0.5rem'} alignItems={'start'} position={'relative'}>
-                      <Card.Title>{person.name}</Card.Title>
+                      <Card.Title>{movie.title}</Card.Title>
 
                       <Text textStyle='md' fontWeight='light'>
-                        {person.character}
+                        {movie.character}
                       </Text>
                     </Card.Body>
                   </Card.Root>
                 </Link>
               ))
-            : "We don't have any cast added to this movie. You can help by adding some!"}
+            : "We don't have any movies added to this person. You can help by adding some!"}
         </Flex>
       </Box>
     );

@@ -70,6 +70,26 @@ export interface SearchParams {
   'vote_average.gte'?: string;
 }
 
+interface Person {
+  id: number;
+  name: string;
+  biography: string;
+  profile_path: string;
+}
+
+interface PersonCredits {
+  id: number;
+  cast: PersonCast[];
+}
+
+interface PersonCast {
+  id: number;
+  original_title: string;
+  poster_path: string;
+  title: string;
+  character: string;
+}
+
 export async function fetchMoviesListFn(searchParams: string, pageParam: number): Promise<MoviesList> {
   return (await axios.get(`${BASE_URL}/discover/movie?page=${pageParam}&${searchParams}`, options)).data;
 }
@@ -90,6 +110,14 @@ export async function searchMoviesListFn(query: string, pageParam: number): Prom
   return (await axios.get(`${BASE_URL}/search/movie?page=${pageParam}&query=${query}`, options)).data;
 }
 
+export async function fetchPersonFn(id: string | undefined): Promise<Person> {
+  return (await axios.get(`${BASE_URL}/person/${id}`, options)).data;
+}
+
+export async function fetchPersonCreditsFn(id: string | undefined): Promise<PersonCredits> {
+  return (await axios.get(`${BASE_URL}/person/${id}/movie_credits`, options)).data;
+}
+
 export const MoviesLibrary = {
   FetchMoviesListQuery: (searchParams: string) =>
     infiniteQueryOptions({
@@ -105,6 +133,12 @@ export const MoviesLibrary = {
 
   FetchCreditsListQuery: (id: string | undefined) =>
     queryOptions({ queryKey: ['moviesLibrary', 'credits', id], queryFn: () => fetchCreditsListFn(id) }),
+
+  FetchPersonQuery: (id: string | undefined) =>
+    queryOptions({ queryKey: ['moviesLibrary', 'person', id], queryFn: () => fetchPersonFn(id) }),
+
+  FetchPersonCreditsQuery: (id: string | undefined) =>
+    queryOptions({ queryKey: ['moviesLibrary', 'person', 'credits', id], queryFn: () => fetchPersonCreditsFn(id) }),
 
   SearchMoviesListQuery: (query: string) =>
     infiniteQueryOptions({

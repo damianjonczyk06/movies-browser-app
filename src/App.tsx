@@ -11,9 +11,9 @@ import { Flex } from '@chakra-ui/react';
 import { Toaster } from '@/components/ui/toaster';
 
 import { Menu } from './components/Menu';
-import { Footer } from './components/Footer';
 
 import './App.css';
+import { PersonView } from './views/PersonDetails/PersonDetails.view';
 
 function App() {
   return (
@@ -21,14 +21,13 @@ function App() {
       <BrowserRouter>
         <Flex flexDirection={'column'}>
           <Menu />
-
+          
           <Routes>
             <Route index element={<MainView />} />
             <Route path='/movie/:id' element={<MovieDetailsView />} />
+            <Route path='/person/:id' element={<PersonView />} />
             <Route path='/search/movie' element={<SearchView />} />
           </Routes>
-
-          <Footer />
           <Toaster />
         </Flex>
       </BrowserRouter>

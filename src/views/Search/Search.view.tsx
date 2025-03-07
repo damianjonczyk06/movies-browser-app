@@ -1,33 +1,53 @@
-import api from '@/api';
-import { Flex, Grid } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Link, useSearchParams } from 'react-router';
+import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
+import { useSearchParams } from 'react-router';
+
+import { useInView } from 'react-intersection-observer';
+import api from '@/api';
+
 import { SingleMovie } from '../Main/SingleMovie';
+import { SkeletonGrid } from '@/components/SkeletonGrid';
 
 export const SearchView = () => {
+  const { ref, inView } = useInView();
   const [searchParams] = useSearchParams();
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, error } = useInfiniteQuery(
     api.MoviesLibrary.SearchMoviesListQuery(searchParams.get('query') ?? ''),
   );
 
-  if (isPending) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView]);
 
+  if (isPending ) return <SkeletonGrid />;
+  if (error) return <p>Error: {error.message}</p>;
   if (data) {
     return (
-      <Flex flexDirection={'column'}>
-        <Link to={'/'} className='button'>
-          Back to main page
-        </Link>
-
-        <Grid templateColumns='repeat(3, 1fr)' gap='6'>
+      <Flex flexDirection={'column'} gap={'2rem'} w={'100%'} p={'3rem'}>
+        <Grid
+          templateColumns={{ base: 'repeat(auto-fit, minmax(200px, 1fr))', md: 'repeat(auto-fit, minmax(200px, 250px))' }}
+          justifyContent={'center'}
+          gap='6'
+          w={'100%'}
+        >
           {data.pages.map(page => page.results.map(movie => <SingleMovie key={`${movie.id}`} movie={movie} />))}
-          {hasNextPage && (
-            <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-              {isFetchingNextPage ? 'Loading...' : 'Load more'}
-            </button>
-          )}
         </Grid>
+
+        {hasNextPage && (
+          <Flex ref={ref} justifyContent={'center'} alignItems={'center'} h={'8rem'}>
+            {isFetchingNextPage && (
+              <ProgressCircle.Root value={null} size='md'>
+                <ProgressCircle.Circle>
+                  <ProgressCircle.Track />
+                  <ProgressCircle.Range strokeLinecap='round' />
+                </ProgressCircle.Circle>
+              </ProgressCircle.Root>
+            )}
+          </Flex>
+        )}
       </Flex>
     );
   }

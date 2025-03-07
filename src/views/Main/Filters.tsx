@@ -40,7 +40,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
             <AccordionItemTrigger indicatorPlacement='start'>Genres</AccordionItemTrigger>
           </Box>
           <AccordionItemContent>
-            <Flex flexWrap={'wrap'} gap={'8px'} justifyContent={'center'}>
+            <Flex flexWrap={'wrap'} gap={'8px'}>
               {data.genres.map(g => (
                 <Button
                   key={`${g.id}-${g.name}`}

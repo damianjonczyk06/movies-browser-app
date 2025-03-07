@@ -4,10 +4,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { SingleMovie } from './SingleMovie';
 
-import { Box, Flex, Grid, ProgressCircle } from '@chakra-ui/react';
-import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
+import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
 
 import api from '@/api';
+import { SkeletonGrid } from '@/components/SkeletonGrid';
 
 export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   const { ref, inView } = useInView();
@@ -25,23 +25,19 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
     }
   }, [fetchNextPage, inView]);
 
-  if (isPending)
-    return (
-      <Grid templateColumns='repeat(auto-fit, minmax(200px, 1fr))' gap='6' w={'100%'}>
-        {[...Array(9)].map((_, index) => (
-          <Box key={index} display='flex' flexDirection={'column'} justifyContent={'center'} gap={'6px'}>
-            <Skeleton h='300px' w={'100%'} />
-            <SkeletonText noOfLines={1} />
-          </Box>
-        ))}
-      </Grid>
-    );
+  if (isPending) return <SkeletonGrid />;
   if (error) return <p>Error: {error.message}</p>;
 
   if (data) {
     return (
       <Flex flexDirection={'column'} gap={'2rem'} w={'100%'}>
-        <Grid templateColumns='repeat(auto-fit, minmax(200px, 1fr))' gap='6' w={'100%'}>
+        <Grid
+          templateColumns={{ base: 'repeat(auto-fit, minmax(200px, 1fr))', md: 'repeat(auto-fit, minmax(200px, 250px))' }}
+          justifyContent={'center'}
+          gap='6'
+          w={'100%'}
+          p={'3rem'}
+        >
           {data.pages.map(page => page.results.map(movie => <SingleMovie key={`${movie.id}`} movie={movie} />))}
         </Grid>
 
