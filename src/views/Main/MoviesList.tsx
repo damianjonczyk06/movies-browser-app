@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { SingleMovie } from './SingleMovie';
 
-import { Box, Button, Flex, Grid } from '@chakra-ui/react';
+import { Box, Flex, Grid, ProgressCircle } from '@chakra-ui/react';
 import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
 
 import api from '@/api';
 
 export const MoviesList = ({ searchParams }: { searchParams: string }) => {
+  const { ref, inView } = useInView();
   const { data, error, isPending, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     api.MoviesLibrary.FetchMoviesListQuery(searchParams),
   );
@@ -16,6 +18,12 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   useEffect(() => {
     refetch();
   }, [searchParams, refetch]);
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView]);
 
   if (isPending)
     return (
@@ -38,9 +46,16 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
         </Grid>
 
         {hasNextPage && (
-          <Button color={'black'} onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading...' : 'Load more'}
-          </Button>
+          <Flex ref={ref} justifyContent={'center'} alignItems={'center'} h={'8rem'}>
+            {isFetchingNextPage && (
+              <ProgressCircle.Root value={null} size='md'>
+                <ProgressCircle.Circle>
+                  <ProgressCircle.Track />
+                  <ProgressCircle.Range strokeLinecap='round' />
+                </ProgressCircle.Circle>
+              </ProgressCircle.Root>
+            )}
+          </Flex>
         )}
       </Flex>
     );

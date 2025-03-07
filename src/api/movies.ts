@@ -43,6 +43,26 @@ export interface Genre {
   name: string;
 }
 
+export interface Credits {
+  id: number;
+  cast: Cast[];
+}
+
+interface Cast {
+  id: number;
+  name: string;
+  original_name: string;
+  adult: boolean;
+  gender: number;
+  known_for_department: string;
+  popularity: number;
+  profile_path: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: 0;
+}
+
 export interface SearchParams {
   page?: number;
   sort_by?: string;
@@ -62,6 +82,10 @@ export async function fetchGenresListFn(): Promise<Genres> {
   return (await axios.get(`${BASE_URL}/genre/movie/list`, options)).data;
 }
 
+export async function fetchCreditsListFn(id: string | undefined): Promise<Credits> {
+  return (await axios.get(`${BASE_URL}/movie/${id}/credits`, options)).data;
+}
+
 export async function searchMoviesListFn(query: string, pageParam: number): Promise<MoviesList> {
   return (await axios.get(`${BASE_URL}/search/movie?page=${pageParam}&query=${query}`, options)).data;
 }
@@ -77,7 +101,10 @@ export const MoviesLibrary = {
 
   FetchMovieQuery: (id: string | undefined) => queryOptions({ queryKey: ['moviesLibrary', id], queryFn: () => fetchMovieFn(id) }),
 
-  FetchGenresQuery: () => queryOptions({ queryKey: ['moviesLibrary', 'genres'], queryFn: () => fetchGenresListFn() }),
+  FetchGenresListQuery: () => queryOptions({ queryKey: ['moviesLibrary', 'genres'], queryFn: () => fetchGenresListFn() }),
+
+  FetchCreditsListQuery: (id: string | undefined) =>
+    queryOptions({ queryKey: ['moviesLibrary', 'credits', id], queryFn: () => fetchCreditsListFn(id) }),
 
   SearchMoviesListQuery: (query: string) =>
     infiniteQueryOptions({

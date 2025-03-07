@@ -12,7 +12,7 @@ interface FiltersProps {
 }
 
 export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
-  const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchGenresQuery());
+  const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchGenresListQuery());
 
   const handleSelectGenre = (genre: number) => {
     setFilterValue(prev => ({
@@ -40,7 +40,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
             <AccordionItemTrigger indicatorPlacement='start'>Genres</AccordionItemTrigger>
           </Box>
           <AccordionItemContent>
-            <Flex flexWrap={'wrap'} gap={'8px'} justifyContent={'center'} maxWidth={'280px'}>
+            <Flex flexWrap={'wrap'} gap={'8px'} justifyContent={'center'}>
               {data.genres.map(g => (
                 <Button
                   key={`${g.id}-${g.name}`}

@@ -24,7 +24,7 @@ export const Sort = ({ sortValue, setSortValue }: SortProps) => {
   return (
     <Box>
       <Heading marginBottom={'0.5rem'}> Sort </Heading>
-      <SelectRoot collection={sortOptions} value={[sortValue]} onValueChange={e => setSortValue(e.value[0])} width={'300px'}>
+      <SelectRoot collection={sortOptions} value={[sortValue]} onValueChange={e => setSortValue(e.value[0])}>
         <SelectTrigger>
           <SelectValueText placeholder='Sort by' />
         </SelectTrigger>
