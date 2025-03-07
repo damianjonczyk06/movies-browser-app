@@ -19,7 +19,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Flex flexDirection={'column'} paddingTop={'4rem'}>
+        <Flex flexDirection={'column'}>
           <Menu />
 
           <Routes>

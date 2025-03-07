@@ -15,7 +15,7 @@ export const MainView = () => {
   });
 
   return (
-    <Flex gap={'2rem'}>
+    <Flex gap={'2rem'} justifyContent={'center'} mt={'1rem'} p={'0 3rem'}>
       <Flex flexDirection={'column'} gap={'2rem'}>
         <Sort sortValue={sortValue} setSortValue={setSortValue} />
         <Filters filterValue={filterValue} setFilterValue={setFilterValues} />

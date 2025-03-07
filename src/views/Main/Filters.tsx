@@ -45,7 +45,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
                 <Button
                   key={`${g.id}-${g.name}`}
                   value={g.id}
-                  bgColor={filterValue.with_genres.includes(g.id) ? 'cyan.700' : 'gray.100'}
+                  bgColor={filterValue.with_genres.includes(g.id) ? 'gray.800' : 'gray.100'}
                   variant={filterValue.with_genres.includes(g.id) ? 'solid' : 'outline'}
                   onClick={() => handleSelectGenre(g.id)}
                 >
@@ -66,7 +66,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
               defaultValue={[5]}
               max={10}
               min={1}
-              colorPalette={'cyan'}
+              colorPalette={'gray'}
               marks={Array.from(Array(10)).map((_, i) => ({ value: i + 1, label: `${i + 1}` }))}
               padding={'0 1rem'}
             />

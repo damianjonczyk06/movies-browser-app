@@ -71,7 +71,7 @@ export const MoviesLibrary = {
     infiniteQueryOptions({
       queryKey: ['moviesLibrary', searchParams],
       queryFn: ({ pageParam = 1 }) => fetchMoviesListFn(searchParams, pageParam),
-      getNextPageParam: movieList => movieList.page + 1,
+      getNextPageParam: lastPage => (lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined),
       initialPageParam: 1,
     }),
 

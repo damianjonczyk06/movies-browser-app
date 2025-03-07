@@ -20,7 +20,7 @@ export const Menu = () => {
       top={'0'}
       left={'0'}
       zIndex={5}
-      background={'cyan.700'}
+      background={'gray.800'}
       w={'100%'}
       justifyContent={'space-between'}
       padding={'1rem'}
