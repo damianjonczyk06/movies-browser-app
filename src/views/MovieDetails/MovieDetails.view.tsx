@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router';
 import { AbsoluteCenter, Box, Button, Flex, Heading, Image, ProgressCircle, Text } from '@chakra-ui/react';
 import { Vibrant } from 'node-vibrant/browser';
 

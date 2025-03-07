@@ -1,7 +1,7 @@
 import { Flex, Input, useBreakpointValue, Button } from '@chakra-ui/react';
 // import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 
 export const Menu = () => {
   const [searchQuery, setSearchQuery] = useState('');
