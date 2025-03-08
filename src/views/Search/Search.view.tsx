@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { Button, Flex, Grid, ProgressCircle } from '@chakra-ui/react';
+import { Button, Flex, Grid, Heading, ProgressCircle } from '@chakra-ui/react';
 import { SkeletonGrid } from '@/components/SkeletonGrid';
 import { SingleMovie } from '../Main/SingleMovie';
 import { ArrowBack } from '@/components/ArrowBack';
@@ -50,7 +50,11 @@ const SearchView = () => {
           gap='6'
           w={'100%'}
         >
-          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={movie.id} movie={movie} />))}
+          {data.pages[0].results.length ? (
+            data.pages.map((page) => page.results.map((movie, idx) => <SingleMovie key={`${movie.id}-${idx}`} movie={movie} />))
+          ) : (
+            <Heading>Sorry, no results</Heading>
+          )}
         </Grid>
 
         {hasNextPage && (

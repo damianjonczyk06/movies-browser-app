@@ -19,7 +19,7 @@ export const SingleMovie = ({ movie }: SingleMovieProps) => (
         alignItems={'start'}
       >
         <Image
-          src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/200x300`}
+          src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/300x500`}
           alt={`${movie.title} poster`}
           w={'100%'}
           borderRadius={'0.25rem 0.25rem 0 0'}

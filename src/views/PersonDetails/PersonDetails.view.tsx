@@ -45,7 +45,7 @@ const PersonView = () => {
 
           <Image
             borderRadius={'0.25rem'}
-            src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}
+            src={data.profile_path ? `https://image.tmdb.org/t/p/w500${data.profile_path}` : `https://placehold.co/500`}
             alt={`${data.name}`}
             height={'500px'}
             maxWidth={'330px'}
@@ -56,7 +56,7 @@ const PersonView = () => {
               {data.name}
             </Heading>
 
-            <Text textStyle='sm' textAlign={'start'}>
+            <Text textStyle='sm' textAlign={'start'} minW={'10rem'} maxW={'30rem'}>
               {data.biography}
             </Text>
           </Flex>

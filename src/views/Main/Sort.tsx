@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Box, createListCollection, Heading } from '@chakra-ui/react';
+import { Box, createListCollection, Heading, Text } from '@chakra-ui/react';
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from '@/components/ui/select';
 
 interface SortProps {
@@ -31,7 +31,7 @@ export const Sort = ({ sortValue, setSortValue }: SortProps) => {
         <SelectContent>
           {sortOptions.items.map((option) => (
             <SelectItem item={option} key={option.value}>
-              {option.label}
+              <Text>{option.label}</Text>
             </SelectItem>
           ))}
         </SelectContent>

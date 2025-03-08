@@ -38,7 +38,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
           w={'100%'}
           p={{ base: '0', md: '0 1rem' }}
         >
-          {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={movie.id} movie={movie} />))}
+          {data.pages.map((page) => page.results.map((movie, idx) => <SingleMovie key={`${movie.id}-${idx}`} movie={movie} />))}
         </Grid>
 
         {hasNextPage && (
