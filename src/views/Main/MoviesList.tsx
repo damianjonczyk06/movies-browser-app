@@ -5,12 +5,13 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { Flex, Grid, ProgressCircle } from '@chakra-ui/react';
 import { SkeletonGrid } from '@/components/SkeletonGrid';
 import { SingleMovie } from './SingleMovie';
+import { ErrorPage } from '@/components/ErrorPage';
 
 import api from '@/api';
 
 export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   const { ref, inView } = useInView();
-  const { data, error, isPending, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+  const { data, isError, isPending, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     api.MoviesLibrary.FetchMoviesListQuery(searchParams)
   );
 
@@ -25,7 +26,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
   }, [fetchNextPage, inView]);
 
   if (isPending) return <SkeletonGrid />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <ErrorPage />;
 
   if (data) {
     return (

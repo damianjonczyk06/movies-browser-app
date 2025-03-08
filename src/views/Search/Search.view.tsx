@@ -7,6 +7,7 @@ import { Button, Flex, Grid, ProgressCircle } from '@chakra-ui/react';
 import { SkeletonGrid } from '@/components/SkeletonGrid';
 import { SingleMovie } from '../Main/SingleMovie';
 import { ArrowBack } from '@/components/ArrowBack';
+import { ErrorPage } from '@/components/ErrorPage';
 
 import api from '@/api';
 
@@ -14,7 +15,7 @@ const SearchView = () => {
   const { ref, inView } = useInView();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, error } = useInfiniteQuery(
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isPending, isError } = useInfiniteQuery(
     api.MoviesLibrary.SearchMoviesListQuery(searchParams.get('query') ?? '')
   );
 
@@ -25,7 +26,7 @@ const SearchView = () => {
   }, [fetchNextPage, inView]);
 
   if (isPending) return <SkeletonGrid />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <ErrorPage />;
   if (data) {
     return (
       <Flex position={'relative'} flexDirection={'column'} gap={'2rem'} w={'100%'} p={'3rem'}>
@@ -41,7 +42,7 @@ const SearchView = () => {
           transition={'left 200ms ease-in-out'}
           onClick={() => navigate(-1)}
         >
-          <ArrowBack color='black'/>
+          <ArrowBack color='black' />
         </Button>
         <Grid
           templateColumns={{ base: 'repeat(auto-fit, minmax(200px, 1fr))', md: 'repeat(auto-fit, minmax(200px, 250px))' }}

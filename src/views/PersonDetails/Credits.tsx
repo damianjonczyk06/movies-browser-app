@@ -48,7 +48,7 @@ export const Credits = () => {
                     alignItems={'start'}
                   >
                     <Image
-                      src={`https://media.themoviedb.org/t/p/w138_and_h175_face/${movie.poster_path}`}
+                      src={ movie.poster_path ? `https://media.themoviedb.org/t/p/w138_and_h175_face/${movie.poster_path}` : `https://placehold.co/140x180`}
                       alt={`${movie.title} poster`}
                       minW={'100%'}
                       maxH={'240px'}

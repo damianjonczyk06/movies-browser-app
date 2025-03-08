@@ -6,6 +6,7 @@ import { Vibrant } from 'node-vibrant/browser';
 import { AbsoluteCenter, Box, Button, Flex, Heading, Image, ProgressCircle, Text } from '@chakra-ui/react';
 import { MovieDetailsSkeleton } from './MovieDetailsSkeleton';
 import { ArrowBack } from '@/components/ArrowBack';
+import { ErrorPage } from '@/components/ErrorPage';
 import { Credits } from './Credits';
 
 import api from '@/api';
@@ -16,14 +17,16 @@ const MovieDetailsView = () => {
 
   const navigate = useNavigate();
   const [palette, setPalette] = useState('');
-  const { data: movie, isPending, isError, error } = useQuery(api.MoviesLibrary.FetchMovieQuery(id));
+  const { data: movie, isPending, isError } = useQuery(api.MoviesLibrary.FetchMovieQuery(id));
 
   useEffect(() => {
     if (movie) {
       Vibrant.from(
         movie.backdrop_path
           ? `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.backdrop_path}`
-          : `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.poster_path}`
+          : movie.poster_path
+            ? `https://image.tmdb.org/t/p/w50_and_h50_face/${movie.poster_path}`
+            : `https://placehold.co/140x180`
       )
         .getPalette()
         .then((palette) => setPalette(palette.Muted?.hex ?? ''));
@@ -31,9 +34,7 @@ const MovieDetailsView = () => {
   }, [movie]);
 
   if (isPending) return <MovieDetailsSkeleton />;
-  if (isError) {
-    return <p>Error: {error.message}</p>;
-  }
+  if (isError) return <ErrorPage />;
 
   if (movie && palette) {
     return (
@@ -79,7 +80,7 @@ const MovieDetailsView = () => {
           />
           <Image
             borderRadius={'0.25rem'}
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/500`}
             alt={`${movie.title} poster`}
             height={'500px'}
             maxWidth={'330px'}

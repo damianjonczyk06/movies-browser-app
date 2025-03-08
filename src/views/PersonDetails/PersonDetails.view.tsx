@@ -5,6 +5,7 @@ import { Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { Credits } from './Credits';
 import { PersonDetailsSkeleton } from './PersonDetailsSkeleton';
 import { ArrowBack } from '@/components/ArrowBack';
+import { ErrorPage } from '@/components/ErrorPage';
 
 import api from '@/api';
 
@@ -12,13 +13,11 @@ const PersonView = () => {
   const { id } = useParams();
   if (!id) throw new Error('ID is empty');
 
-  const { data, isPending, isError, error } = useQuery(api.MoviesLibrary.FetchPersonQuery(id));
+  const { data, isPending, isError } = useQuery(api.MoviesLibrary.FetchPersonQuery(id));
   const navigate = useNavigate();
 
   if (isPending) return <PersonDetailsSkeleton />;
-  if (isError) {
-    return <p>Error: {error.message}</p>;
-  }
+  if (isError) return <ErrorPage />;
 
   if (data)
     return (

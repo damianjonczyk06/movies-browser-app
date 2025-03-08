@@ -134,8 +134,7 @@ export const MoviesLibrary = {
   FetchCreditsListQuery: (id: string) =>
     queryOptions({ queryKey: ['moviesLibrary', 'credits', id], queryFn: () => fetchCreditsListFn(id) }),
 
-  FetchPersonQuery: (id: string) =>
-    queryOptions({ queryKey: ['moviesLibrary', 'person', id], queryFn: () => fetchPersonFn(id) }),
+  FetchPersonQuery: (id: string) => queryOptions({ queryKey: ['moviesLibrary', 'person', id], queryFn: () => fetchPersonFn(id) }),
 
   FetchPersonCreditsQuery: (id: string) =>
     queryOptions({ queryKey: ['moviesLibrary', 'person', 'credits', id], queryFn: () => fetchPersonCreditsFn(id) }),
