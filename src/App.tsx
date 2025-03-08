@@ -1,4 +1,4 @@
-import { lazy, ReactNode, Suspense } from 'react';
+import { lazy, ReactNode, Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -13,6 +13,7 @@ const PersonView = lazy(() => import('./views/PersonDetails/PersonDetails.view')
 
 import queryClient from './queryClient';
 import './App.css';
+import { useColorMode } from './components/ui/color-mode';
 
 const LazyRoute = ({ children }: { children: ReactNode }) => (
   <Suspense
@@ -32,6 +33,12 @@ const LazyRoute = ({ children }: { children: ReactNode }) => (
 );
 
 function App() {
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    setColorMode('light');
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
