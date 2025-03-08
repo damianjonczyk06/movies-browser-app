@@ -93,7 +93,7 @@ const MovieDetailsView = () => {
 
             <Flex gap={'10px'} mb={'1rem'} wrap={'wrap'} flexShrink={'0'}>
               {movie.genres.map((g) => (
-                <Text>{g.name}</Text>
+                <Text key={g.id}>{g.name}</Text>
               ))}
               <Flex flexDir={'row'} gap={'0.5rem'}>
                 &bull;
