@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Vibrant } from 'node-vibrant/browser';
 
@@ -42,7 +42,7 @@ const MovieDetailsView = () => {
           flexDirection={{ base: 'column', md: 'row' }}
           position={'relative'}
           gap={'2rem'}
-          p={'3rem 5rem'}
+          p={{ base: '3rem 1rem', md: '3rem 5rem' }}
           background={
             movie.backdrop_path
               ? `url('https://image.tmdb.org/t/p/w533_and_h300_bestv2${movie.backdrop_path}')`
@@ -61,11 +61,11 @@ const MovieDetailsView = () => {
             textDecoration={{ base: 'none', _hover: 'underline 2px solid white' }}
             position={'absolute'}
             top={'0.25rem'}
-            left={{ base: '3.5rem', _hover: '3rem' }}
+            left={{ base: '-0.5rem', md: { _hover: '3rem', base: '3.5rem' } }}
             transition={'left 200ms ease-in-out'}
             onClick={() => navigate(-1)}
           >
-            <ArrowBack color='white'/>
+            <ArrowBack color='white' />
           </Button>
           <Box
             position='absolute'
@@ -85,22 +85,22 @@ const MovieDetailsView = () => {
             maxWidth={'330px'}
             shadow={'xl'}
           />
-          <Flex flexDirection={'column'} alignItems={'start'} justifyContent={'end'} color={'fg.inverted'}>
+          <Flex flexDirection={'column'} alignItems={'start'} justifyContent={'end'} color={'white'}>
             <Heading size={'4xl'} fontWeight={'bold'} mb={'.25rem'}>
               {movie.title} ({movie.release_date ? new Date(movie.release_date).getFullYear() : 'NA'})
             </Heading>
 
-            <Flex gap={'10px'} mb={'1rem'}>
+            <Flex gap={'10px'} mb={'1rem'} wrap={'wrap'} flexShrink={'0'}>
               {movie.genres.map((g) => (
-                <Link key={g.id} to={`/genres/${g.id}`}>
-                  {g.name}
-                </Link>
+                <Text>{g.name}</Text>
               ))}
-              &bull;
-              <Text textStyle='md'>
-                {Math.floor(movie.runtime / 60) > 0 && `${Math.floor(movie.runtime / 60)}h `}
-                {`${movie.runtime % 60}m`}
-              </Text>
+              <Flex flexDir={'row'} gap={'0.5rem'}>
+                &bull;
+                <Text textStyle='md'>
+                  {Math.floor(movie.runtime / 60) > 0 && `${Math.floor(movie.runtime / 60)}h `}
+                  {`${movie.runtime % 60}m`}
+                </Text>
+              </Flex>
             </Flex>
 
             <Text textStyle='sm' textAlign={'start'} mb={'1rem'} minW={'10rem'} maxW={'30rem'}>

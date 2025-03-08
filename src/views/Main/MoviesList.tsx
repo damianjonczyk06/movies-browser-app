@@ -35,7 +35,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
           justifyContent={'center'}
           gap='6'
           w={'100%'}
-          p={'3rem'}
+          p={{ base: '0', md: '0 1rem' }}
         >
           {data.pages.map((page) => page.results.map((movie) => <SingleMovie key={movie.id} movie={movie} />))}
         </Grid>

@@ -23,7 +23,12 @@ const PersonView = () => {
   if (data)
     return (
       <Flex flexDirection={'column'}>
-        <Flex position={'relative'} gap={'2rem'} p={'3rem 5rem'} flexDirection={{ base: 'column', md: 'row' }}>
+        <Flex
+          position={'relative'}
+          flexDirection={{ base: 'column', md: 'row' }}
+          gap={'2rem'}
+          p={{ base: '3rem 1rem', md: '3rem 5rem' }}
+        >
           <Button
             fontSize={'md'}
             fontWeight={'light'}
@@ -32,7 +37,7 @@ const PersonView = () => {
             textDecoration={{ base: 'none', _hover: 'underline 2px solid white' }}
             position={'absolute'}
             top={'0.25rem'}
-            left={{ base: '3.5rem', _hover: '3rem' }}
+            left={{ base: '-0.5rem', md: { _hover: '3rem', base: '3.5rem' } }}
             transition={'left 200ms ease-in-out'}
             onClick={() => navigate(-1)}
           >
@@ -44,6 +49,7 @@ const PersonView = () => {
             src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}
             alt={`${data.name}`}
             height={'500px'}
+            maxWidth={'330px'}
             shadow={'xl'}
           />
           <Flex flexDirection={'column'} alignItems={'start'} justifyContent={'end'}>

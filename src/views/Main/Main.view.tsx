@@ -19,7 +19,7 @@ export const MainView = () => {
   });
 
   return (
-    <Flex flexDirection={isMobile ? 'column' : 'row'} gap={'2rem'} justifyContent={'center'} mt={'1rem'} p={'0 3rem'}>
+    <Flex flexDirection={isMobile ? 'column' : 'row'} gap={'2rem'} justifyContent={'center'} mt={'1rem'} p={' 0 1rem'}>
       <Flex flexDirection={'column'} gap={'2rem'} w={'100%'} maxW={isMobile ? '100%' : '18rem'}>
         <Sort sortValue={sortValue} setSortValue={setSortValue} />
         <Filters filterValue={filterValue} setFilterValue={setFilterValues} />

@@ -7,7 +7,7 @@ export const MovieDetailsSkeleton = () => {
       <Flex position={'relative'} gap={'2rem'} p={'3rem 5rem'}>
         <Skeleton h={'500px'} w={'333px'} />
 
-        <Flex flexDirection={'column'} alignItems={'start'} justifyContent={'end'} color={'fg.inverted'}>
+        <Flex flexDirection={'column'} alignItems={'start'} justifyContent={'end'} color={'white'}>
           <Skeleton h={'2.5rem'} w={'300px'} />
 
           <Flex gap={'2px'} mb={'1rem'} mt={'1rem'}>
