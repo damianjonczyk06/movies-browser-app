@@ -31,7 +31,7 @@ export const Sort = ({ sortValue, setSortValue }: SortProps) => {
         <SelectContent>
           {sortOptions.items.map((option) => (
             <SelectItem item={option} key={option.value}>
-              <Text>{option.label}</Text>
+              <Text color={'black'}>{option.label}</Text>
             </SelectItem>
           ))}
         </SelectContent>
