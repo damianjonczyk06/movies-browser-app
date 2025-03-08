@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# React + Vite + Yarn 2.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application using Vite as the build tool and Yarn 2.0 as the package manager.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Make sure you have the following installed:
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) (Recommended: LTS version)
+- [Yarn 2.0](https://yarnpkg.com/getting-started/install)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+1. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   cd <project-folder>
+   ```
+2. Install dependencies:
+   ```sh
+   yarn install
+   ```
+
+## Development
+
+To start the development server, run:
+
+```sh
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will start the Vite development server, and you can access the application at `http://localhost:5173/` by default.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+## Build
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+To build the project, use:
+
+```sh
+yarn build
 ```
+
+To build the project for production, use:
+
+```sh
+yarn build-prod
+```
+
+The output will be in the `dist` folder.
+
+## Preview
+
+To preview the production build locally, run:
+
+```sh
+yarn preview
+```
+
+## Linting & Formatting
+
+To lint the code:
+
+```sh
+yarn lint
+```
+
+To format the code:
+
+```sh
+yarn format
+```
+
+## Using @yarnpkg/sdks
+
+To enable proper IDE support for TypeScript, ESLint, and Prettier when using Yarn 2, you can run:
+
+```sh
+yarn dlx @yarnpkg/sdks vscode
+```
+
+This will generate the necessary SDKs for better development experience in VSCode and other editors.
