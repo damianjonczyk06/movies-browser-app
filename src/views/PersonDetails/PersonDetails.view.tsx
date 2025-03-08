@@ -23,7 +23,7 @@ const PersonView = () => {
   if (data)
     return (
       <Flex flexDirection={'column'}>
-        <Flex position={'relative'} gap={'2rem'} p={'3rem 5rem'}>
+        <Flex position={'relative'} gap={'2rem'} p={'3rem 5rem'} flexDirection={{ base: 'column', md: 'row' }}>
           <Button
             fontSize={'md'}
             fontWeight={'light'}
@@ -36,7 +36,7 @@ const PersonView = () => {
             transition={'left 200ms ease-in-out'}
             onClick={() => navigate(-1)}
           >
-            <ArrowBack color='black'/>
+            <ArrowBack color='black' />
           </Button>
 
           <Image

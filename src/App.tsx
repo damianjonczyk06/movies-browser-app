@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { Flex } from '@chakra-ui/react';
+import { Flex, ProgressCircle } from '@chakra-ui/react';
 import { Toaster } from '@/components/ui/toaster';
 import { MainView } from './views/Main/Main.view';
 import { Menu } from './components/Menu';
@@ -14,7 +14,22 @@ const PersonView = lazy(() => import('./views/PersonDetails/PersonDetails.view')
 import queryClient from './queryClient';
 import './App.css';
 
-const LazyRoute = ({ children }: { children: ReactNode }) => <Suspense fallback={'Loading...'}>{children}</Suspense>;
+const LazyRoute = ({ children }: { children: ReactNode }) => (
+  <Suspense
+    fallback={
+      <Flex justifyContent={'center'} alignItems={'center'}>
+        <ProgressCircle.Root position={'absolute'} top={'50%'} value={null} size='md'>
+          <ProgressCircle.Circle>
+            <ProgressCircle.Track />
+            <ProgressCircle.Range strokeLinecap='round' />
+          </ProgressCircle.Circle>
+        </ProgressCircle.Root>
+      </Flex>
+    }
+  >
+    {children}
+  </Suspense>
+);
 
 function App() {
   return (
@@ -29,7 +44,7 @@ function App() {
               path='/movie/:id'
               element={
                 <LazyRoute>
-                  <MovieDetailsView />{' '}
+                  <MovieDetailsView />
                 </LazyRoute>
               }
             />
