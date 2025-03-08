@@ -94,9 +94,15 @@ export const Menu = () => {
             p={'1rem'}
             w={'100%'}
             bg={'gray.300'}
-            zIndex={'2'}
+            zIndex={'5'}
           >
-            <Input w={'300px'} placeholder='Search...' onChange={(e) => setSearchQuery(e.target.value)} />
+            <Input
+              w={{ base: '100%', md: '300px' }}
+              color={'black'}
+              bgColor={'white'}
+              placeholder='Search...'
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </Flex>
         )}
       </Flex>
