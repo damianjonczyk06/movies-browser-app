@@ -48,11 +48,15 @@ export const Menu = () => {
     </svg>
   );
 
-  const HamburgerIcon = () => (
+  const SearchIcon = () => (
     <svg xmlns='http://www.w3.org/2000/svg' width='800px' height='800px' viewBox='0 0 24 24' fill='none'>
-      <path d='M4 18L20 18' stroke='white' stroke-width='2' stroke-linecap='round' />
-      <path d='M4 12L20 12' stroke='white' stroke-width='2' stroke-linecap='round' />
-      <path d='M4 6L20 6' stroke='white' stroke-width='2' stroke-linecap='round' />
+      <path
+        d='M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z'
+        stroke='white'
+        stroke-width='2'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
     </svg>
   );
 
@@ -75,16 +79,24 @@ export const Menu = () => {
           </Link>
 
           <Button onClick={() => setShowMobileMenu(!showMobileMenu)} bg={{ base: 'transparent', _hover: '#ffffff3a' }}>
-            <HamburgerIcon />
+            <SearchIcon />
           </Button>
         </Flex>
 
         {showMobileMenu && isMobile && (
-          <Flex flexDirection={'column'} alignItems={'center'} align='center' flex='1' p={'1rem'} bg={'gray.300'}>
+          <Flex
+            position={'fixed'}
+            flexDirection={'column'}
+            alignItems={'center'}
+            align='center'
+            flex='1'
+            top={'5rem'}
+            p={'1rem'}
+            w={'100%'}
+            bg={'gray.300'}
+            zIndex={'2'}
+          >
             <Input w={'300px'} bgColor={'white'} placeholder='Search...' onChange={(e) => setSearchQuery(e.target.value)} />
-
-            <Link to={'/'}> Movies </Link>
-            <Link to={'/'}> People </Link>
           </Flex>
         )}
       </Flex>
