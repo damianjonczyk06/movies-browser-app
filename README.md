@@ -21,6 +21,16 @@ Make sure you have the following installed:
    yarn install
    ```
 
+## Environment Variables
+
+Create a `.env` file in the root directory and add the following variables:
+
+```sh
+VITE_BASE_URL=https://api.themoviedb.org/3
+VITE_TMDB_API_KEY=<your_tmdb_api_key>
+VITE_TMDB_AUTH_KEY=<your_tmdb_auth_key>
+```
+
 ## Development
 
 To start the development server, run:
