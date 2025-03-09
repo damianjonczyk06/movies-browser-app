@@ -3,17 +3,20 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+import { MainView } from './views/Main/Main.view';
 import { Flex, ProgressCircle } from '@chakra-ui/react';
 import { Toaster } from '@/components/ui/toaster';
-import { MainView } from './views/Main/Main.view';
+import { useColorMode } from './components/ui/color-mode';
 import { Menu } from './components/Menu';
+import { ScrollTop } from './components/ScrollTop';
+
 const MovieDetailsView = lazy(() => import('./views/MovieDetails/MovieDetails.view'));
 const SearchView = lazy(() => import('./views/Search/Search.view'));
 const PersonView = lazy(() => import('./views/PersonDetails/PersonDetails.view'));
 
 import queryClient from './queryClient';
+
 import './App.css';
-import { useColorMode } from './components/ui/color-mode';
 
 const LazyRoute = ({ children }: { children: ReactNode }) => (
   <Suspense
@@ -41,6 +44,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollTop />
       <BrowserRouter>
         <Flex flexDirection={'column'}>
           <Menu />
