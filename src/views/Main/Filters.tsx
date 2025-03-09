@@ -12,9 +12,10 @@ import type { SearchParams } from '@/api/movies';
 interface FiltersProps {
   filterValue: SearchParams;
   setFilterValue: Dispatch<SetStateAction<SearchParams>>;
+  defaultFilters: SearchParams;
 }
 
-export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
+export const Filters = ({ filterValue, setFilterValue, defaultFilters }: FiltersProps) => {
   const { data, isPending, error } = useQuery(api.MoviesLibrary.FetchGenresListQuery());
 
   const handleSelectGenre = (genre: number) => {
@@ -84,6 +85,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
               minStepsBetweenThumbs={1}
               onValueChangeEnd={(e) => handleChangeScore(e.value)}
               defaultValue={[6, 10]}
+              value={[parseInt(filterValue['vote_average.gte'] ?? ''), parseInt(filterValue['vote_average.lte'] ?? '')]}
               max={10}
               min={0}
               colorPalette={'gray'}
@@ -102,6 +104,7 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
               minStepsBetweenThumbs={50}
               onValueChangeEnd={(e) => handleChangeRuntime(e.value)}
               defaultValue={[0, 400]}
+              value={[parseInt(filterValue['with_runtime.gte'] ?? ''), parseInt(filterValue['with_runtime.lte'] ?? '')]}
               max={400}
               min={0}
               step={50}
@@ -111,6 +114,10 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
             />
           </AccordionItemContent>
         </AccordionItem>
+
+        <Button color={'black'} onClick={() => setFilterValue(defaultFilters)}>
+          Clear Filters
+        </Button>
       </AccordionRoot>
     </Box>
   );
