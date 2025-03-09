@@ -22,6 +22,7 @@ export const SingleMovie = ({ movie }: SingleMovieProps) => (
           src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/300x500`}
           alt={`${movie.title} poster`}
           w={'100%'}
+          h={'100%'}
           borderRadius={'0.25rem 0.25rem 0 0'}
         />
 
@@ -41,7 +42,7 @@ export const SingleMovie = ({ movie }: SingleMovieProps) => (
               <ProgressCircle.Range strokeLinecap='round' />
             </ProgressCircle.Circle>
             <AbsoluteCenter bg={'white'} w={'100%'} h={'100%'} borderRadius={'50%'} shadow={'sm'}>
-              <ProgressCircle.ValueText fontSize={'sm'} />
+              <ProgressCircle.ValueText fontSize={'xs'} color={'black'} />
             </AbsoluteCenter>
           </ProgressCircle.Root>
 

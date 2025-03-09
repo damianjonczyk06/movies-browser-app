@@ -24,10 +24,12 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
     }));
   };
 
-  const handleChangeScore = (value: number) => {
+  const handleChangeScore = (value: number[]) => {
+    console.log(value);
     setFilterValue((prev) => ({
       ...prev,
-      'vote_average.gte': `${value}`,
+      'vote_average.gte': `${value[0]}`,
+      'vote_average.lte': `${value[1]}`,
     }));
   };
 
@@ -72,8 +74,9 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
           </Box>
           <AccordionItemContent>
             <Slider
-              onValueChangeEnd={(e) => handleChangeScore(e.value[0])}
-              defaultValue={[5]}
+              minStepsBetweenThumbs={1}
+              onValueChangeEnd={(e) => handleChangeScore(e.value)}
+              defaultValue={[6, 10]}
               max={10}
               min={1}
               colorPalette={'gray'}

@@ -9,12 +9,17 @@ import type { SearchParams } from '@/api/movies';
 
 export const MainView = () => {
   const [sortValue, setSortValue] = useState<string>('popularity.desc');
-  const [filterValue, setFilterValues] = useState<SearchParams>({ with_genres: [], 'vote_average.gte': '5' });
+  const [filterValue, setFilterValues] = useState<SearchParams>({
+    with_genres: [],
+    'vote_average.gte': '6',
+    'vote_average.lte': '10',
+  });
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   const searchParams = new URLSearchParams({
     sort_by: sortValue,
-    'vote_average.gte': filterValue['vote_average.gte'] || '',
+    'vote_average.gte': filterValue['vote_average.gte'] ?? '',
+    'vote_average.lte': filterValue['vote_average.lte'] ?? '',
     with_genres: filterValue.with_genres.join(','),
   });
 

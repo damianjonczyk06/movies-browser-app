@@ -121,7 +121,7 @@ const MovieDetailsView = () => {
                   <ProgressCircle.Range strokeLinecap='round' />
                 </ProgressCircle.Circle>
                 <AbsoluteCenter bg={'white'} w={'100%'} h={'100%'} borderRadius={'50%'} shadow={'sm'}>
-                  <ProgressCircle.ValueText fontSize={'sm'} color={'black'} />
+                  <ProgressCircle.ValueText fontSize={'xs'} color={'black'} />
                 </AbsoluteCenter>
               </ProgressCircle.Root>
 
