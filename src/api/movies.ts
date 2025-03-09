@@ -69,6 +69,8 @@ export interface SearchParams {
   with_genres: number[];
   'vote_average.gte'?: string;
   'vote_average.lte'?: string;
+  'with_runtime.gte'?: string;
+  'with_runtime.lte'?: string;
 }
 
 interface Person {

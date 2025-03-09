@@ -30,7 +30,7 @@ export const MoviesList = ({ searchParams }: { searchParams: string }) => {
 
   if (data) {
     return (
-      <Flex flexDirection={'column'} gap={'2rem'} w={'100%'}>
+      <Flex flexDirection={'column'} gap={'2rem'} w={'100%'} pb={'2rem'}>
         <Grid
           templateColumns={{ base: 'repeat(auto-fit, minmax(200px, 1fr))', md: 'repeat(auto-fit, minmax(200px, 250px))' }}
           justifyContent={'center'}

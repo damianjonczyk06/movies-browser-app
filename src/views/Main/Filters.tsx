@@ -25,11 +25,18 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
   };
 
   const handleChangeScore = (value: number[]) => {
-    console.log(value);
     setFilterValue((prev) => ({
       ...prev,
       'vote_average.gte': `${value[0]}`,
       'vote_average.lte': `${value[1]}`,
+    }));
+  };
+
+  const handleChangeRuntime = (value: number[]) => {
+    setFilterValue((prev) => ({
+      ...prev,
+      'with_runtime.gte': `${value[0]}`,
+      'with_runtime.lte': `${value[1]}`,
     }));
   };
 
@@ -78,9 +85,28 @@ export const Filters = ({ filterValue, setFilterValue }: FiltersProps) => {
               onValueChangeEnd={(e) => handleChangeScore(e.value)}
               defaultValue={[6, 10]}
               max={10}
-              min={1}
+              min={0}
               colorPalette={'gray'}
-              marks={Array.from(Array(10)).map((_, i) => ({ value: i + 1, label: `${i + 1}` }))}
+              marks={Array.from(Array(11)).map((_, i) => ({ value: i, label: `${i}` }))}
+              padding={'0 1rem'}
+            />
+          </AccordionItemContent>
+        </AccordionItem>
+
+        <AccordionItem value={'runtime'}>
+          <Box position='relative'>
+            <AccordionItemTrigger indicatorPlacement='start'>Runtime</AccordionItemTrigger>
+          </Box>
+          <AccordionItemContent>
+            <Slider
+              minStepsBetweenThumbs={50}
+              onValueChangeEnd={(e) => handleChangeRuntime(e.value)}
+              defaultValue={[0, 400]}
+              max={400}
+              min={0}
+              step={50}
+              colorPalette={'gray'}
+              marks={Array.from(Array(5 * 2)).map((_, i) => ({ value: i * 100, label: `${i}` }))}
               padding={'0 1rem'}
             />
           </AccordionItemContent>

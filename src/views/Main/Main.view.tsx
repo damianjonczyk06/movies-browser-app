@@ -13,6 +13,8 @@ export const MainView = () => {
     with_genres: [],
     'vote_average.gte': '6',
     'vote_average.lte': '10',
+    'with_runtime.gte': '0',
+    'with_runtime.lte': '400',
   });
   const isMobile = useBreakpointValue({ base: true, md: false });
 
@@ -20,6 +22,8 @@ export const MainView = () => {
     sort_by: sortValue,
     'vote_average.gte': filterValue['vote_average.gte'] ?? '',
     'vote_average.lte': filterValue['vote_average.lte'] ?? '',
+    'with_runtime.gte': filterValue['with_runtime.gte'] ?? '',
+    'with_runtime.lte': filterValue['with_runtime.lte'] ?? '',
     with_genres: filterValue.with_genres.join(','),
   });
 
