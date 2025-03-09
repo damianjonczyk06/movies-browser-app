@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { AbsoluteCenter, Card, Image, ProgressCircle, Text, Link as ChakraLink } from '@chakra-ui/react';
+import { AbsoluteCenter, Card, Image, ProgressCircle, Text, Link as ChakraLink, Box } from '@chakra-ui/react';
 import type { Movie } from '@/api/movies';
 
 interface SingleMovieProps {
@@ -18,13 +18,17 @@ export const SingleMovie = ({ movie }: SingleMovieProps) => (
         transition='box-shadow 300ms ease-in-out'
         alignItems={'start'}
       >
-        <Image
-          src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/300x500`}
-          alt={`${movie.title} poster`}
-          w={'100%'}
-          h={'100%'}
-          borderRadius={'0.25rem 0.25rem 0 0'}
-        />
+        <Box overflow={'hidden'} h={'100%'}>
+          <Image
+            src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://placehold.co/300x500`}
+            alt={`${movie.title} poster`}
+            w={'100%'}
+            h={'100%'}
+            borderRadius={'0.25rem 0.25rem 0 0'}
+            transform={{ base: 'scale(1)', _hover: 'scale(1.075)' }}
+            transition={'transform 400ms'}
+          />
+        </Box>
 
         <Card.Body p={'1.5rem 0.5rem 0 0.5rem'} alignItems={'start'} position={'relative'}>
           <ProgressCircle.Root
