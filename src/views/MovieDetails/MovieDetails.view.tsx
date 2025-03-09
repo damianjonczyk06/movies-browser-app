@@ -43,7 +43,7 @@ const MovieDetailsView = () => {
           flexDirection={{ base: 'column', md: 'row' }}
           position={'relative'}
           gap={'2rem'}
-          p={{ base: '3rem 1rem', md: '3rem 5rem' }}
+          p={{ base: '5rem 1rem 3rem 1rem', md: '5rem 5rem 3rem 5rem' }}
           background={
             movie.backdrop_path
               ? `url('https://image.tmdb.org/t/p/w533_and_h300_bestv2${movie.backdrop_path}')`
@@ -61,7 +61,7 @@ const MovieDetailsView = () => {
             color={{ base: 'white', _hover: 'white' }}
             textDecoration={{ base: 'none', _hover: 'underline 2px solid white' }}
             position={'absolute'}
-            top={'0.25rem'}
+            top={'1.25rem'}
             left={{ base: '-0.5rem', md: { _hover: '3rem', base: '3.5rem' } }}
             transition={'left 200ms ease-in-out'}
             onClick={() => navigate(-1)}

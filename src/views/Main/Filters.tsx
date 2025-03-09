@@ -109,7 +109,7 @@ export const Filters = ({ filterValue, setFilterValue, defaultFilters }: Filters
               min={0}
               step={50}
               colorPalette={'gray'}
-              marks={Array.from(Array(5 * 2)).map((_, i) => ({ value: i * 100, label: `${i}` }))}
+              marks={Array.from(Array(5 * 2)).map((_, i) => ({ value: i * 100, label: `${i}h` }))}
               padding={'0 1rem'}
             />
           </AccordionItemContent>

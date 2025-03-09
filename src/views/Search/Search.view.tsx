@@ -38,14 +38,14 @@ const SearchView = () => {
             color={{ base: 'white', _hover: 'white' }}
             textDecoration={{ base: 'none', _hover: 'underline 2px solid white' }}
             position={'absolute'}
-            top={'0.25rem'}
-            left={{ base: '2.5rem', _hover: '2rem' }}
+            top={'1rem'}
+            left={{ base: '0.5rem', _hover: '0rem' }}
             transition={'left 200ms ease-in-out'}
             onClick={() => navigate(-1)}
           >
             <ArrowBack color='black' />
           </Button>
-          <Heading mt={'0.5rem'}>
+          <Heading mt={'1.25rem'}>
             Results for: <Span fontWeight={'bold'}>{searchParams.get('query')}</Span>{' '}
           </Heading>
         </Flex>
